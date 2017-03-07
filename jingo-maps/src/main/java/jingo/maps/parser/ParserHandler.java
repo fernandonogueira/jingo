@@ -13,13 +13,13 @@ public class ParserHandler {
         init();
     }
 
+    private static void registerParser(QueryParser<? extends Query> parser) {
+        parserMap.put(parser.getQueryClass(), parser);
+    }
+
     public void init() {
         registerParser(new SimpleQueryParser());
         registerParser(new AdvancedQueryParser());
-    }
-
-    private static void registerParser(QueryParser<? extends Query> parser) {
-        parserMap.put(parser.getQueryType(), parser);
     }
 
     public QueryParser<?> getParser(Query query) {

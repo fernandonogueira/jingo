@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jingo.maps.parser.ParserHandler;
 import jingo.maps.query.Query;
-import jingo.maps.result.Result;
+import jingo.maps.result.JingoResult;
 import jingo.maps.result.geocode.GeocodeResource;
 import jingo.maps.util.JacksonUtils;
 import org.slf4j.Logger;
@@ -57,7 +57,7 @@ public class JingoGeocoder {
         this.readTimeout = readTimeout;
     }
 
-    public Result<GeocodeResource> geocode(Query query) throws IOException {
+    public JingoResult<GeocodeResource> geocode(Query query) throws IOException {
         String url = prepareURL(query);
 
         try {
@@ -68,7 +68,7 @@ public class JingoGeocoder {
             conn.connect();
             Reader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             try {
-                return objectMapper.readValue(reader, new TypeReference<Result<GeocodeResource>>() {
+                return objectMapper.readValue(reader, new TypeReference<JingoResult<GeocodeResource>>() {
                 });
             } catch (JsonParseException | JsonMappingException e) {
                 LOGGER.error("Error parsing Jingo response", e);

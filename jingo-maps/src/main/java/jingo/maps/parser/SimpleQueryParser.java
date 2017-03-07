@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
 public class SimpleQueryParser implements QueryParser<SimpleQuery> {
 
     @Override
-    public Class<SimpleQuery> getQueryType() {
+    public Class<SimpleQuery> getQueryClass() {
         return SimpleQuery.class;
     }
 

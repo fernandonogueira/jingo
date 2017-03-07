@@ -2,7 +2,7 @@ package jingo.maps;
 
 import jingo.maps.query.Query;
 import jingo.maps.query.SimpleQuery;
-import jingo.maps.result.Result;
+import jingo.maps.result.JingoResult;
 import jingo.maps.result.geocode.GeocodeResource;
 import jingo.maps.utils.TestUtils;
 import org.junit.Before;
@@ -24,7 +24,7 @@ public class JingoHappyDayTests {
     @Test
     public void simpleGeocodeTest() throws IOException {
         Query query = givenAnSimpleQuery();
-        Result<GeocodeResource> result = geocoder.geocode(query);
+        JingoResult<GeocodeResource> result = geocoder.geocode(query);
 
         assertThat(result).isNotNull();
         assertThat(result.getAuthenticationResultCode()).isEqualTo("ValidCredentials");
@@ -39,7 +39,7 @@ public class JingoHappyDayTests {
 
     private Query givenAnSimpleQuery() {
         SimpleQuery query = new SimpleQuery();
-        query.setQuery("Rua Santos Dumont, Redenção, Brasil");
+        query.setQuery("Rua Santos Dumont, Redenção, Brasil, Ceará");
         return query;
     }
 

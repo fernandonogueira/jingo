@@ -6,7 +6,7 @@ import jingo.maps.query.Query;
 public class AdvancedQueryParser implements QueryParser<AdvancedQuery> {
 
     @Override
-    public Class<AdvancedQuery> getQueryType() {
+    public Class<AdvancedQuery> getQueryClass() {
         return AdvancedQuery.class;
     }
 

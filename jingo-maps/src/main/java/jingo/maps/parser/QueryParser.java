@@ -6,9 +6,10 @@ public interface QueryParser<Q extends Query> {
 
     /**
      * Returns the Query type that this parser knows how to parse
+     *
      * @return the class type
      */
-    Class<Q> getQueryType();
+    Class<Q> getQueryClass();
 
     String parse(Query query);
 
