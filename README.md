@@ -1,8 +1,12 @@
 # Jingo
 
-Jingo is a lightweight Java API to make it easy to access Microsoft Bing Maps and Geocoding features. 
+Jingo is a lightweight Java API to make it easy to access Microsoft Bing Maps and Geocoding features.
 
-### Dependency
+ [![codecov](https://codecov.io/gh/fernandonogueira/jingo/branch/master/graph/badge.svg)](https://codecov.io/gh/fernandonogueira/jingo)
+
+### Binaries
+
+[![](https://jitpack.io/v/fernandonogueira/jingo.svg)](https://jitpack.io/#fernandonogueira/jingo)
 
 #### Gradle
 ```groovy
