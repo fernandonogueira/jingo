@@ -23,8 +23,6 @@ public class ParserHandler {
     }
 
     public QueryParser<?> getParser(Query query) {
-
-
         return parserMap.get(query.getClass());
     }
 

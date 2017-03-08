@@ -1,7 +1,7 @@
 package jingo.maps;
 
+import jingo.maps.query.AdvancedQuery;
 import jingo.maps.query.Query;
-import jingo.maps.query.SimpleQuery;
 import jingo.maps.result.JingoResult;
 import jingo.maps.result.geocode.GeocodeResource;
 import jingo.maps.utils.TestUtils;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class JingoHappyDayTests {
+public class JingoAdvancedQueryHappyDayTests {
 
     private JingoGeocoder geocoder;
 
@@ -23,7 +23,7 @@ public class JingoHappyDayTests {
 
     @Test
     public void simpleGeocodeTest() throws IOException {
-        Query query = givenAnSimpleQuery();
+        Query query = givenAnAdvancedQuery();
         JingoResult<GeocodeResource> result = geocoder.geocode(query);
 
         assertThat(result).isNotNull();
@@ -35,9 +35,14 @@ public class JingoHappyDayTests {
         assertThat(result.getResourceSets().get(0).getResources().get(0).getBbox().length).isNotZero();
     }
 
-    private Query givenAnSimpleQuery() {
-        SimpleQuery query = new SimpleQuery();
-        query.setQuery("Rua Santos Dumont, Redenção, Brasil, Ceará");
+    private Query givenAnAdvancedQuery() {
+        AdvancedQuery query = new AdvancedQuery();
+
+        query.setAddressLine("Rua Santos Dumont");
+        query.setLocality("Redenção");
+        query.setAdminDistrict("Ceará");
+        query.setCountryRegion("Brasil");
+
         return query;
     }
 
