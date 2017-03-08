@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class JingoHappyDayTests {
+public class JingoHappyDayTest {
 
     private JingoGeocoder geocoder;
 

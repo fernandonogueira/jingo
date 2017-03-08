@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class JingoAdvancedQueryHappyDayTests {
+public class JingoAdvancedQueryHappyDayTest {
 
     private JingoGeocoder geocoder;
 

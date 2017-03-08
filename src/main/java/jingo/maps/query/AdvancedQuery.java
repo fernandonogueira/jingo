@@ -42,7 +42,7 @@ public class AdvancedQuery implements Query {
     /**
      * Max results
      */
-    private Long maxResults;
+    private Integer maxResults;
 
     public String getCountryRegion() {
         return countryRegion;
@@ -108,11 +108,13 @@ public class AdvancedQuery implements Query {
         this.includeNeighborhood = includeNeighborhood;
     }
 
-    public Long getMaxResults() {
+    @Override
+    public Integer getMaxResults() {
         return maxResults;
     }
 
-    public void setMaxResults(Long maxResults) {
+    @Override
+    public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
 }

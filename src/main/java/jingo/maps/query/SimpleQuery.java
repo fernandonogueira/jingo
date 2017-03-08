@@ -14,10 +14,12 @@ public class SimpleQuery implements Query {
         this.query = query;
     }
 
+    @Override
     public Integer getMaxResults() {
         return maxResults;
     }
 
+    @Override
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
