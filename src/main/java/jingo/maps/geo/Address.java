@@ -3,11 +3,14 @@ package jingo.maps.geo;
 public class Address extends AbstractLocationType {
 
     /**
-     * The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. Typical use of this element would be to provide a street address or any official address.
+     * The official street line of an address relative to the area,
+     * as specified by the Locality, or PostalCode, properties.
+     * Typical use of this element would be to provide a street address or any official address.
      */
     private String addressLine;
     /**
-     * A string specifying the populated place for the address. This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries.
+     * A string specifying the populated place for the address.
+     * This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries.
      */
     private String locality;
     /**

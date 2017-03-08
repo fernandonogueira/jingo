@@ -36,7 +36,7 @@ public class GeocodeResource implements JingoResource {
      * The level of confidence that the geocoded location result is a match.
      * Use this value with the match code to determine for more complete information about the match.
      */
-    private String confidence;
+    private Confidence confidence;
 
     /**
      * The classification of the geographic entity returned, such as Address.
@@ -76,11 +76,11 @@ public class GeocodeResource implements JingoResource {
         this.address = address;
     }
 
-    public String getConfidence() {
+    public Confidence getConfidence() {
         return confidence;
     }
 
-    public void setConfidence(String confidence) {
+    public void setConfidence(Confidence confidence) {
         this.confidence = confidence;
     }
 

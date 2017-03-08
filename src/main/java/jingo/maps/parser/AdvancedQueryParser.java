@@ -43,11 +43,12 @@ public class AdvancedQueryParser implements QueryParser<AdvancedQuery> {
         return str;
     }
 
-    private String concatIfPresent(String property, String value, String currentStr) {
+    private String concatIfPresent(String property, Object value, String currentStr) {
         if (value != null) {
+            String stringVal = String.valueOf(value);
             currentStr = addSeparatorIfNecessary(currentStr);
             try {
-                currentStr += property + "=" + java.net.URLEncoder.encode(value, "utf-8");
+                currentStr += property + "=" + java.net.URLEncoder.encode(stringVal, "utf-8");
             } catch (UnsupportedEncodingException e) {
                 LOGGER.error("Error parsing Jingo query", e);
             }

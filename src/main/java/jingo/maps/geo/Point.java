@@ -5,7 +5,7 @@ public class Point extends AbstractLocationType {
     private float[] coordinates;
 
     public Point() {
-        super("Point");
+        super(LocationTypeName.POINT.getName());
     }
 
     public float[] getCoordinates() {
