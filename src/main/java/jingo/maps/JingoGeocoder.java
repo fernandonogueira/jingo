@@ -57,6 +57,16 @@ public class JingoGeocoder {
         this.readTimeout = readTimeout;
     }
 
+    /**
+     * Geocode an address based on a Query.
+     * <p>
+     * For now, you may choose
+     * between Advanced Queries ({@link jingo.maps.query.AdvancedQuery}) or Simple Queries ({@link jingo.maps.query.SimpleQuery})
+     *
+     * @param query The {@link Query} object
+     * @return The Geocoding request result {@link JingoResult}
+     * @throws IOException when something unexpected happens
+     */
     public JingoResult<GeocodeResource> geocode(Query query) throws IOException {
         String url = prepareURL(query);
 
