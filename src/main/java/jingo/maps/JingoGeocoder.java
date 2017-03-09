@@ -9,13 +9,12 @@ import jingo.maps.query.Query;
 import jingo.maps.result.JingoResult;
 import jingo.maps.result.geocode.GeocodeResource;
 import jingo.maps.util.JacksonUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -84,16 +83,16 @@ public class JingoGeocoder {
                 notOkResult.setStatusCode(code);
                 return notOkResult;
             }
-            Reader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            try {
-                return objectMapper.readValue(reader, new TypeReference<JingoResult<GeocodeResource>>() {
+
+            try (BufferedInputStream bis = new BufferedInputStream(conn.getInputStream())) {
+                String string = IOUtils.toString(bis, "UTF-8");
+                LOGGER.info("Bing JSON Result: {}", string);
+                return objectMapper.readValue(string, new TypeReference<JingoResult<GeocodeResource>>() {
                 });
             } catch (JsonParseException | JsonMappingException e) {
                 LOGGER.error("Error parsing Jingo response", e);
             } catch (IOException e) {
                 LOGGER.error("IOException trying to geocode", e);
-            } finally {
-                reader.close();
             }
         } catch (MalformedURLException e) {
             LOGGER.error("Jingo error trying to geocode", e);
