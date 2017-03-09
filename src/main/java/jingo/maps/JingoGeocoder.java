@@ -74,6 +74,7 @@ public class JingoGeocoder {
             conn.setConnectTimeout(connectTimeout);
             conn.setReadTimeout(readTimeout);
             conn.setRequestMethod("GET");
+            conn.setRequestProperty("User-Agent", "Jingo Client");
             conn.connect();
 
             int code = conn.getResponseCode();
