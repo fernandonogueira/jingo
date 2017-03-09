@@ -16,15 +16,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
 public class JingoGeocoder {
 
+    public static final String DEFAULT_BING_URL = "http://dev.virtualearth.net/REST/v1/Locations";
     private static final Logger LOGGER = LoggerFactory.getLogger(JingoGeocoder.class);
-
-    private static final String DEFAULT_BING_URL = "http://dev.virtualearth.net/REST/v1/Locations";
     private static final int DEFAULT_CONNECT_TIMEOUT = 30000;
     private static final int DEFAULT_READ_TIMEOUT = 30000;
 
@@ -72,10 +71,19 @@ public class JingoGeocoder {
 
         try {
             URL nUrl = new URL(url);
-            URLConnection conn = nUrl.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) nUrl.openConnection();
             conn.setConnectTimeout(connectTimeout);
             conn.setReadTimeout(readTimeout);
+            conn.setRequestMethod("GET");
             conn.connect();
+
+            int code = conn.getResponseCode();
+
+            if (code != 200) {
+                JingoResult<GeocodeResource> notOkResult = new JingoResult<>();
+                notOkResult.setStatusCode(code);
+                return notOkResult;
+            }
             Reader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             try {
                 return objectMapper.readValue(reader, new TypeReference<JingoResult<GeocodeResource>>() {
